@@ -1,4 +1,5 @@
 export default {
+  css: ["@/static/styles.css"],
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
 
@@ -26,5 +27,36 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    [
+      "@nuxtjs/firebase",
+
+      {
+        config: {
+          apiKey: "AIzaSyBV9QEc627ZyfPhSkCSTel1j23dZ0L1OiY",
+          authDomain: "vue-authentication-2bb34.firebaseapp.com",
+          projectId: "vue-authentication-2bb34",
+          storageBucket: "vue-authentication-2bb34.appspot.com",
+          messagingSenderId: "1023624976227",
+          appId: "1:1023624976227:web:723c982dc71509b527e556",
+          measurementId: "G-XBW57K1P9X",
+        },
+        auth: {
+          persistence: "local", // default
+          initialize: {
+            onAuthStateChangedMutation: "ON_AUTH_STATE_CHANGED_MUTATION",
+            onAuthStateChangedAction: "onAuthStateChangedAction",
+            subscribeManually: false,
+          },
+          ssr: false, // default
+          emulatorPort: 9099,
+          emulatorHost: "http://localhost",
+        },
+        services: {
+          auth: true, // Just as example. Can be any other service.
+        },
+      },
+      "@nuxtjs/axios",
+    ],
+  ],
 };
